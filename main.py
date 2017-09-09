@@ -48,14 +48,16 @@ print(train_data.head(5))
 pm = Recommenders.popularity_recommender_py()
 pm.create(train_data, 'user_id', 'song')
 
-user_id = users[10]
+
+a = input("enter id")
+user_id = users[a]
 pm.recommend(user_id)
 
 is_model = Recommenders.item_similarity_recommender_py()
 is_model.create(train_data, 'user_id', 'song')
 
 #Print the songs for the user in training data
-user_id = users[5]
+user_id = users[a]
 user_items = is_model.get_user_items(user_id)
 #
 print("------------------------------------------------------------------------------------")
@@ -72,7 +74,8 @@ print("----------------------------------------------------------------------")
 #Recommend songs for the user using personalized model
 is_model.recommend(user_id)
 
-user_id = users[7]
+
+user_id = users[a]
 #Fill in the code here
 user_items = is_model.get_user_items(user_id)
 #
