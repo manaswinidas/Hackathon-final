@@ -6,6 +6,10 @@ from sklearn.externals import joblib
 import Recommenders as Recommenders
 import Evaluation as Evaluation
 
+f = open('main.html','w')
+
+
+
 #Read userid-songid-listen_count triplets
 #This step might take time to download data from external sources
 triplets_file = 'data.txt'
@@ -43,6 +47,8 @@ songs = song_df['song'].unique()
 len(songs)
 
 train_data, test_data = train_test_split(song_df, test_size = 0.20, random_state=0)
+
+y = train_data.head(5)
 print(train_data.head(5))
 
 pm = Recommenders.popularity_recommender_py()
@@ -60,12 +66,23 @@ is_model.create(train_data, 'user_id', 'song')
 user_id = users[a]
 user_items = is_model.get_user_items(user_id)
 #
+message1 = """<html>
+<head></head>
+<body><td>"""
+f.write(message1)
+f.write("<tr>%s</tr>" %song_df.head())
+f.write("<tr>%s</tr>" %train_data.head(5))
 print("------------------------------------------------------------------------------------")
 print("Training data songs for the user userid: %s:" % user_id)
 print("------------------------------------------------------------------------------------")
 
+message4 = """<h3>"Training data songs for the user userid:</h3>"""
+f.write(message4)
+
 for user_item in user_items:
     print(user_item)
+    z = user_item
+    f.write("<td>data:%s</td>" %z)
 
 print("----------------------------------------------------------------------")
 print("Recommendation process going on:")
@@ -83,9 +100,13 @@ print("-------------------------------------------------------------------------
 print("Training data songs for the user userid: %s:" % user_id)
 print("------------------------------------------------------------------------------------")
 
+message5 = """<h3>"TTraining data songs for the user userid:</h3>"""
+f.write(message5)
+
 for user_item in user_items:
     print(user_item)
-
+    w = user_item
+    f.write("<td>data:%s</td>" %w)
 print("----------------------------------------------------------------------")
 print("Recommendation process going on:")
 print("----------------------------------------------------------------------")
@@ -98,3 +119,9 @@ is_model.get_similar_items(['U Smile - Justin Bieber'])
 song = 'Yellow - Coldplay'
 ###Fill in the code here
 is_model.get_similar_items([song])
+
+message6 = """</p></body>
+</html>"""
+
+f.write(message6)  
+f.close()
