@@ -82,7 +82,7 @@ f.write(message4)
 for user_item in user_items:
     print(user_item)
     z = user_item
-    f.write("<td>data:%s</td>" %z)
+    f.write("<tr>data:%s</tr>" %z)
 
 print("----------------------------------------------------------------------")
 print("Recommendation process going on:")
@@ -106,7 +106,7 @@ f.write(message5)
 for user_item in user_items:
     print(user_item)
     w = user_item
-    f.write("<td>data:%s</td>" %w)
+    f.write("<tr>data:%s</tr>" %w)
 print("----------------------------------------------------------------------")
 print("Recommendation process going on:")
 print("----------------------------------------------------------------------")
@@ -120,7 +120,7 @@ song = 'Yellow - Coldplay'
 ###Fill in the code here
 is_model.get_similar_items([song])
 
-message6 = """</p></body>
+message6 = """</td></body>
 </html>"""
 
 f.write(message6)  
